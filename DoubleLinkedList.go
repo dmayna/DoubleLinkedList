@@ -16,6 +16,7 @@ type LinkedList struct {
 }
 
 func (L *LinkedList) insert(inData int) {
+	fmt.Println("Inserted: ", inData)
 	newNode := &Node{Value: inData}
 	if L.Head == nil {
 		L.Head = newNode
@@ -61,13 +62,13 @@ func (list *LinkedList)bubblesort() {
 		return
 	}
 	for swapped {
-		swapped = true
+		swapped = false
 		first = list.Head
 		for first.Next != next && first.Next != nil {
 
 			if first.Value > first.Next.Value {
 				swap(first, first.Next)
-				swapped = false
+				swapped = true
 			}
 			first = first.Next
 		}
@@ -91,7 +92,9 @@ func main() {
 	list.insert(7)
 	list.insert(2)
 	list.insert(4)
-	list.PrintList()
+	list.insert(13)
+	list.insert(9)
+	list.insert(3)
 	list.reverse()
 	list.PrintList()
 	list.bubblesort()
