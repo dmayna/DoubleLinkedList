@@ -52,6 +52,35 @@ func (L *LinkedList) reverse() {
 	L.Head = tail
 }
 
+func (list *LinkedList)bubblesort() {
+	fmt.Println("Sorted-")
+	swapped := true
+	first := list.Head
+	next := &Node{}
+	if first == nil {
+		return
+	}
+	for swapped {
+		swapped = true
+		first = list.Head
+		for first.Next != next && first.Next != nil {
+
+			if first.Value > first.Next.Value {
+				swap(first, first.Next)
+				swapped = false
+			}
+			first = first.Next
+		}
+		next = first
+	}
+}
+
+func swap(a *Node, b *Node) {
+	temp := a.Value
+	a.Value = b.Value
+	b.Value = temp
+}
+
 func newList() *LinkedList {
 	return &LinkedList{}
 }
@@ -64,5 +93,7 @@ func main() {
 	list.insert(4)
 	list.PrintList()
 	list.reverse()
+	list.PrintList()
+	list.bubblesort()
 	list.PrintList()
 }
